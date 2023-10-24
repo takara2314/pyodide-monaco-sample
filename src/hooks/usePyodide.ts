@@ -35,9 +35,11 @@ const usePyodide = (packages: string[] = []) => {
     });
 
     if (packages && pyodide.current != null) {
-      await pyodide.current.loadPackage("setuptools");
-      await pyodide.current.loadPackage("micropip");
-      const micropip = pyodide.current.pyimport("micropip");
+      await pyodide.current.loadPackage('setuptools');
+      await pyodide.current.loadPackage('micropip');
+      await pyodide.current.loadPackage('numpy');
+
+      const micropip = pyodide.current.pyimport('micropip');
 
       for (const p of packages) {
         await micropip.install(p);
